@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nashville Local Pro | Find a Local Service Professional</title>
+<meta name="description" content="Tell Nashville Local Pro what you need and we'll help connect you with a local service professional.">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#17324d;background:#f4f7fb}
+header{background:#fff;border-bottom:1px solid #e7edf4;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}
+.logo{font-size:21px;font-weight:800;letter-spacing:-.4px}.area{font-size:13px;color:#6b7f93}
+.hero{background:linear-gradient(135deg,#102f4b,#1c72e8);color:#fff;padding:68px 20px 84px;text-align:center}
+.hero h1{font-size:clamp(34px,7vw,56px);line-height:1.03;letter-spacing:-1.7px;max-width:800px;margin:0 auto 18px}
+.hero p{font-size:18px;line-height:1.55;max-width:680px;margin:0 auto;color:#eaf3ff}
+.wrap{max-width:850px;margin:-40px auto 60px;padding:0 14px}
+.card{background:#fff;border-radius:20px;padding:30px;box-shadow:0 18px 55px rgba(16,47,75,.13)}
+.progress{height:6px;background:#e8eef5;border-radius:99px;margin-bottom:28px;overflow:hidden}.progress>div{height:100%;width:25%;background:#1c72e8;transition:.25s}
+.step{display:none}.step.active{display:block}.step h2{font-size:25px;margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.service{border:1px solid #d9e3ee;background:#fff;border-radius:12px;padding:18px;text-align:left;font-size:16px;font-weight:650;color:#17324d;cursor:pointer;transition:.15s}
+.service:hover{border-color:#1c72e8;transform:translateY(-1px);box-shadow:0 5px 16px rgba(28,114,232,.1)}
+label{display:block;font-weight:700;margin:17px 0 7px}input,select,textarea{width:100%;padding:14px;border:1px solid #c8d4e1;border-radius:10px;font:inherit;font-size:16px;color:#17324d;background:#fff}textarea{min-height:105px;resize:vertical}
+.primary,.secondary{width:100%;border-radius:10px;padding:14px 18px;font-size:16px;font-weight:750;cursor:pointer;margin-top:20px}
+.primary{border:0;background:#1c72e8;color:#fff}.secondary{border:1px solid #c8d4e1;background:#fff;color:#17324d;margin-top:10px}
+.trust{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px;color:#667d93;font-size:13px}
+.success{text-align:center;padding:25px 10px}.check{width:64px;height:64px;border-radius:50%;background:#e7f6ef;color:#13835a;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px}.ref{color:#6b7f93;font-size:14px}
+.notice{font-size:12px;color:#71869a;line-height:1.55;margin-top:18px}
+footer{text-align:center;padding:0 20px 40px;color:#71869a;font-size:13px}
+@media(max-width:600px){header{padding:15px 5%}.grid{grid-template-columns:1fr}.card{padding:22px}.hero{padding:55px 18px 72px}.hero p{font-size:16px}}
+</style>
+</head>
+<body>
+<header><div class="logo">Nashville Local Pro</div><div class="area">Nashville & Middle Tennessee</div></header>
+
+<section class="hero">
+<h1>Need a local pro?</h1>
+<p>Tell us what you need, answer a few quick questions, and we'll help connect you with a local service professional.</p>
+</section>
+
+<div class="wrap"><div class="card">
+<div class="progress"><div id="bar"></div></div>
+
+<section class="step active" id="step1">
+<h2>What do you need help with?</h2>
+<div class="grid">
+<button class="service" onclick="choose('HVAC')">❄️ HVAC</button>
+<button class="service" onclick="choose('Plumbing')">🔧 Plumbing</button>
+<button class="service" onclick="choose('Electrical')">⚡ Electrical</button>
+<button class="service" onclick="choose('Roofing')">🏠 Roofing</button>
+<button class="service" onclick="choose('Garage Door')">🚪 Garage Door</button>
+<button class="service" onclick="choose('Landscaping')">🌳 Landscaping</button>
+<button class="service" onclick="choose('Pest Control')">🐜 Pest Control</button>
+<button class="service" onclick="choose('Handyman')">🛠️ Handyman</button>
+</div>
+<div class="trust"><span>✓ Local service focus</span><span>✓ Simple request</span><span>✓ No endless searching</span></div>
+</section>
+
+<section class="step" id="step2">
+<h2 id="serviceHeading"></h2>
+<label for="problem">What do you need?</label>
+<select id="problem"><option value="">Select one</option><option>Repair</option><option>Replacement</option><option>New installation</option><option>Maintenance</option><option>Emergency / urgent problem</option><option>Getting quotes</option><option>Other</option></select>
+<label for="urgency">How soon do you need help?</label>
+<select id="urgency"><option value="">Select one</option><option>As soon as possible</option><option>Today or tomorrow</option><option>This week</option><option>Not urgent — just getting a quote</option></select>
+<label for="details">Tell us anything else that may help</label>
+<textarea id="details" placeholder="Example: My AC is running but the house isn't getting cold."></textarea>
+<button class="primary" onclick="go(3)">Continue</button><button class="secondary" onclick="go(1)">Back</button>
+</section>
+
+<section class="step" id="step3">
+<h2>Where are you located?</h2>
+<label for="zip">ZIP code</label><input id="zip" inputmode="numeric" maxlength="5" placeholder="37209">
+<label for="name">Name</label><input id="name" placeholder="First and last name">
+<label for="phone">Phone</label><input id="phone" type="tel" placeholder="(615) 555-0123">
+<label for="email">Email</label><input id="email" type="email" placeholder="you@example.com">
+<button class="primary" onclick="submitRequest()">Find My Local Pro</button><button class="secondary" onclick="go(2)">Back</button>
+<p class="notice">Prototype notice: this is a test version. Before accepting real customer requests, the form, privacy policy, terms, and phone/text consent language should be finalized and reviewed for applicable Tennessee and federal requirements.</p>
+</section>
+
+<section class="step" id="step4">
+<div class="success"><div class="check">✓</div><h2>Request received!</h2><p>Thanks. We're working on matching your request with a local service professional.</p><p class="ref" id="ref"></p></div>
+</section>
+</div></div>
+
+<footer>© 2026 Nashville Local Pro · Prototype</footer>
+
+<script>
+let lead={service:""};
+function choose(service){lead.service=service;document.getElementById("serviceHeading").textContent=service+" — tell us a little more";go(2)}
+function go(n){document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));document.getElementById("step"+n).classList.add("active");document.getElementById("bar").style.width=(n*25)+"%";window.scrollTo({top:220,behavior:"smooth"})}
+function submitRequest(){
+const required=["problem","urgency","zip","name","phone","email"];
+for(const id of required){if(!document.getElementById(id).value.trim()){alert("Please complete all required fields.");return}}
+const zip=document.getElementById("zip").value.trim();
+if(!/^\d{5}$/.test(zip)){alert("Please enter a valid 5-digit ZIP code.");return}
+lead.problem=document.getElementById("problem").value;
+lead.urgency=document.getElementById("urgency").value;
+lead.details=document.getElementById("details").value.trim();
+lead.zip=zip;lead.name=document.getElementById("name").value.trim();
+lead.phone=document.getElementById("phone").value.trim();
+lead.email=document.getElementById("email").value.trim();
+lead.reference="NLP-"+Math.random().toString(36).slice(2,8).toUpperCase();
+lead.created=new Date().toISOString();
+const old=JSON.parse(localStorage.getItem("nashvilleLocalProTestLeads")||"[]");old.push(lead);localStorage.setItem("nashvilleLocalProTestLeads",JSON.stringify(old));
+document.getElementById("ref").textContent="Request #"+lead.reference;
+go(4)
+}
+</script>
+</body>
+</html>
